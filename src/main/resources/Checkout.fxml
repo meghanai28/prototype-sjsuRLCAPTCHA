@@ -85,5 +85,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
+        <!-- Honeypot button - invisible to users but clickable by bots -->
+        <Button fx:id="honeypotButton" layoutX="-1000.0" layoutY="-1000.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="1.0" text="" visible="false" />
     </children>
 </AnchorPane>
