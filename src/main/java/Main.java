@@ -21,6 +21,13 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
         
+    	String fileName = "actionLog.txt";
+    	File file = new File(fileName);
+    	if(file.exists()) {
+    		file.delete();
+    	}
+    	file.createNewFile();
+        
         //Scuffed code to track events
         scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             long ts = System.nanoTime()/1_000_000; // ms
@@ -51,16 +58,7 @@ public class Main extends Application {
     
     //Writes event strings to file called actionLog.txt
     private void writeToFile (String line) {
-    	String fileName = "actionLog.txt";
-    	File file = new File(fileName);
-    	
-    	if(!file.exists()) {
-        	try {
-    			file.createNewFile();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-    	}
+    	File file = new File("actionLog.txt");
     	
         try {
             FileWriter fw = new FileWriter(file, true);
