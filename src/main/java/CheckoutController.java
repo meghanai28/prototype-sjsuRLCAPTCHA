@@ -52,25 +52,29 @@ public class CheckoutController implements Initializable {
         System.out.println("BOT DETECTED: Honeypot clicked!");
     }
 
-    @FXML
-    public void handleCheckout(ActionEvent event) {
-        calculateFinalScore();
-
-        if (isBot || userScore < 50) {
-            System.out.println("ACCESS DENIED - Bot detected (Score: " + userScore + ")");
-        } else {
-            System.out.println("ACCESS GRANTED - Human verified (Score: " + userScore + ")");
-        }
-    }
-
     private void calculateFinalScore() {
         // Add random element to make bot detection harder
         int randomFactor = random.nextInt(20) - 10; // -10 to +10
-        userScore = random.nextInt(140);
+        userScore = random.nextInt(80);
         System.out.println("Initial user score: " + userScore);
         userScore += randomFactor;
 
         System.out.println("Final user score: " + userScore);
+    }
+
+    @FXML
+    public void handleCheckout(ActionEvent event) {
+        calculateFinalScore();
+
+        double normalized = Math.max(0, Math.min(1, userScore / 100.0)); // map to [0,1]
+
+        boolean ok = CaptchaManager.run(normalized, isBot, checkoutButton.getScene().getWindow()); // Call captcha manager
+
+        if (ok) {
+            System.out.println("ACCESS GRANTED - Human verified (Score: " + userScore + ")");
+        } else {
+            System.out.println("ACCESS DENIED - Verification failed (Score: " + userScore + ")");
+        }
     }
 
 }
