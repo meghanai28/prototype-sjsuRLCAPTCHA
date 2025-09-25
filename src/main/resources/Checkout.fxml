@@ -86,6 +86,6 @@
             </font>
         </Button>
         <!-- Honeypot button - invisible to users but clickable by bots -->
-        <Button fx:id="honeypotButton" layoutX="-1000.0" layoutY="-1000.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="1.0" text="" visible="false" />
+        <Button fx:id="honeypotButton" layoutX="500.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Honeypot" visible="true" /> <!--set visible="false" if you make it disappeared | demo purpose-->
     </children>
 </AnchorPane>
