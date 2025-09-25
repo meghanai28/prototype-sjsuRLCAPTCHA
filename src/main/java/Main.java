@@ -52,7 +52,7 @@ public class Main extends Application {
         for (Object arg : args) {
             sb.append(arg).append(" ");
         }
-        System.out.println(sb.toString());
+        //System.out.println(sb.toString()); //Printing to console for errors
         writeToFile(sb.toString());
     }
     
